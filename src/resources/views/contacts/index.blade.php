@@ -134,10 +134,10 @@
                 <div class="contact-form__group-content">
                     <select name="category_id" class="contact-form__select" id="category">
                         <option value="">選択してください</option>
-                        @foreach ($categories as $category)
+                        @foreach ($categories as $index => $category)
                             <option
                                 value="{{ $category->id }}"{{ old('category_id', session('category_id')) == $category->id ? 'selected' : '' }}>
-                                {{ $category->content }}</option>
+                                {{ $index + 1 }}. {{ $category->content }}</option>
                         @endforeach
                     </select>
                     <div class="contact-form__error">
