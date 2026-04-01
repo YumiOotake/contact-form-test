@@ -77,22 +77,16 @@
                 </div>
                 <div class="contact-form__group-content">
                     {{-- mergeで繋げて表示？ーは擬似要素か？ --}}
-                    <input type="tel" id="tel1" name="tel1" value="{{ old('tel1') }}"
+                    <input type="tel" id="tel1" name="tel1" value="{{ old('tel1', session('tel1')) }}"
                         class="contact-form__input--text" placeholder="080">
-                    <input type="tel" id="tel2" name="tel2" value="{{ old('tel2') }}"
+                    <input type="tel" id="tel2" name="tel2" value="{{ old('tel2', session('tel2')) }}"
                         class="contact-form__input--text" placeholder="1234">
-                    <input type="tel" id="tel3" name="tel3" value="{{ old('tel3') }}"
+                    <input type="tel" id="tel3" name="tel3" value="{{ old('tel3', session('tel3')) }}"
                         class="contact-form__input--text" placeholder="5678">
                     <div class="contact-form__error">
-                        @error('tel1')
-                            {{ $message }}
-                        @enderror
-                        @error('tel2')
-                            {{ $message }}
-                        @enderror
-                        @error('tel3')
-                            {{ $message }}
-                        @enderror
+                        @if ($errors->has('tel1') || $errors->has('tel2') || $errors->has('tel3'))
+                            {{ $errors->first('tel1') ?: $errors->first('tel2') ?: $errors->first('tel3') }}
+                        @endif
                     </div>
                 </div>
             </div>

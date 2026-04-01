@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('content')->get();
+        $categories = Category::orderBy('id')->get();
 
         return view('contacts.index', compact('categories'));
     }
@@ -20,7 +21,7 @@ class ContactController extends Controller
         return $data['tel1'] . '-' . $data['tel2'] . '-' . $data['tel3'];
     }
 
-    public function confirm(Request $request)
+    public function confirm(ContactRequest $request)
     {
         $contact = $request->only([
             'category_id',

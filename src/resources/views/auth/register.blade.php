@@ -7,7 +7,7 @@
         <div class="register-form__heading">
             <h2 class="heading-title register-form__heading-title">Register</h2>
         </div>
-        <form action="{{ route('register') }}" method="POST" class="form">
+        <form action="{{ route('register') }}" method="POST" class="form" novalidate>
             @csrf
             <div class="form__group">
                 <div class="form__group-title">

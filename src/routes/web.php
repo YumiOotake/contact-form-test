@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ContactController::class, 'index'])->name('index');
-Route::post('confirm', [ContactController::class, 'confirm'])->name('confirm');
-Route::post('thanks', [ContactController::class, 'store'])->name('thanks');
+Route::post('/confirm', [ContactController::class, 'confirm'])->name('confirm');
+Route::post('/thanks', [ContactController::class, 'store'])->name('thanks');
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
