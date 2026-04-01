@@ -7,7 +7,7 @@
         <div class="admin__heading">
             <h2 class="heading-title admin__heading-title">Admin</h2>
         </div>
-        <form class="search-form" action="{{ route('search') }}" method="get">
+        {{-- <form class="search-form" action="{{ route('search') }}" method="get">
             <div class="search-form__content">
                 <div class="search-form__item">
                     <input type="text" name="keyword" class="search-form__item-input" placeholder="名前やメールアドレスを入力してください "
@@ -42,7 +42,7 @@
                     </a>
                 </div>
             </div>
-        </form>
+        </form> --}}
         <div class="admin-content__nav">
             {{-- あとで実装する<div class="admin-content__export">
                 <a href="{{ route('export') }}" class="admin-content__export--button">エクスポート</a>
