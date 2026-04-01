@@ -7,7 +7,7 @@
         <div class="admin__heading">
             <h2 class="heading-title admin__heading-title">Admin</h2>
         </div>
-        {{-- <form class="search-form" action="{{ route('search') }}" method="get">
+        <form class="search-form" action="{{ route('search') }}" method="get">
             <div class="search-form__content">
                 <div class="search-form__item">
                     <input type="text" name="keyword" class="search-form__item-input" placeholder="名前やメールアドレスを入力してください "
@@ -25,15 +25,16 @@
                 <div class="search-form__item">
                     <select name="category_id" class="search-form__item-input">
                         <option value="">お問い合わせの種類</option>
-                        @foreach ($categories as $category)
+                        @foreach ($categories as $index => $category)
                             <option value="{{ $category->id }}"
-                                {{ request('category_id') == $category->id ? 'selected' : '' }}>{{ $category->content }}
+                                {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                {{ $index + 1 }}. {{ $category->content }}
                             </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="search-form__item">
-                    <input type="date" id="date" name="date" class="search-form__item-input" placeholder="年/月/日">
+                    <input type="date" id="date" name="date" class="search-form__item-input" placeholder="年/月/日" value="{{ request('date') }}">
                 </div>
                 <div class="search-form__button">
                     <button class="search-form__button--submit" type="submit">検索</button>
@@ -42,14 +43,14 @@
                     </a>
                 </div>
             </div>
-        </form> --}}
+        </form>
         <div class="admin-content__nav">
-            {{-- あとで実装する<div class="admin-content__export">
-                <a href="{{ route('export') }}" class="admin-content__export--button">エクスポート</a>
-            </div> --}}
-            {{-- <div class="admin-content__paginate">
+            <div class="admin-content__export">
+                <a href="{{ route('export', request()->query()) }}" class="admin-content__export--button">エクスポート</a>
+            </div>
+            <div class="admin-content__paginate">
                 {{ $contacts->appends(request()->query())->links('vendor.pagination.custom') }}
-            </div> --}}
+            </div>
         </div>
 
 
