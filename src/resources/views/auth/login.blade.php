@@ -3,9 +3,9 @@
     <link rel="stylesheet" href="{{ asset('css/auth/auth.css') }}">
 @endsection
 @section('content')
-    <div class="login-form__content">
+    <div class="login-form__content form__content">
         <div class="login-form__heading">
-            <h2 class="heading-title login-form__heading-title">Login</h2>
+            <h1 class="heading-title login-form__heading-title">Login</h1>
         </div>
         <form action="{{ route('login') }}" method="POST" class="form" novalidate>
             @csrf

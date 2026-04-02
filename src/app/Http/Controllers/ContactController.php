@@ -36,12 +36,17 @@ class ContactController extends Controller
             'building',
             'detail'
         ]);
-        session($contact); //画面戻る用にsessionに保存
+        session($contact);
 
         $contact['tel'] = $this->buildTel($contact);
         $category = Category::find($request->category_id);
 
         return view('contacts.confirm', compact('contact', 'category'));
+    }
+
+    public function thanks()
+    {
+        return view('contacts.thanks');
     }
 
     public function store(Request $request)
@@ -78,6 +83,6 @@ class ContactController extends Controller
             'detail'
         ]);
 
-        return view('contacts.thanks');
+        return redirect()->route('thanks');
     }
 }

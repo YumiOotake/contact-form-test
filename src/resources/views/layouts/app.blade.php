@@ -43,8 +43,8 @@
     </header>
     <main>
         @yield('content')
-        @stack('scripts')
     </main>
+@stack('scripts')
 </body>
 
 </html>

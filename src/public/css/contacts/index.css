@@ -1,0 +1,146 @@
+.contact-form__content {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.contact-form__heading-title {
+    font-size: 35px;
+    margin-bottom: 50px;
+}
+
+.contact-form {
+    max-width: 972px;
+    margin: 0 auto;
+}
+
+.contact-form__group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.contact-form__group-title {
+    width: 35%;
+    text-align: left;
+    padding-top: 16px;
+    /* inputのpaddingと合わせる */
+}
+
+.contact-form__label--item {
+    font-size: 20px;
+    color: var(--color-main);
+}
+
+.contact-form__label--span {
+    font-size: 20px;
+    color: var(--color-red);
+}
+
+.contact-form__group-content {
+    width: 60%;
+}
+
+.contact-form__input--text {
+    width: 100%;
+    font-size: 14px;
+    color: var(--color-main);
+    background-color: var(--color-bg-light);
+    border: none;
+    padding: 16px;
+}
+
+.contact-form__input--text::placeholder {
+    color: var(--color-sub-text);
+}
+
+.contact-form__name {
+    display: flex;
+    gap: 16px;
+}
+
+.contact-form__name .contact-form__input--text {
+    width: 50%;
+}
+
+.contact-form__tel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-form__tel .contact-form__input--text {
+    width: 33%;
+    text-align: center;
+}
+
+.contact-form__gender {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 80px;
+}
+
+.contact-form__gender-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-form__tel-hyphen {
+    color: var(--color-main);
+}
+
+.contact-form__select-wrapper {
+    position: relative;
+    width: 50%;
+}
+
+
+.contact-form__select {
+    color: var(--color-sub-text);
+    appearance: none;
+    /* -webkit-appearance: none;
+    padding-right: 40px */
+    width: 100%;
+}
+
+.contact-form__select-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: none;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid var(--color-main);
+    transform: translateY(-50%);
+}
+
+.contact-form__select.valid {
+    color: var(--color-main);
+}
+
+.contact-form__textarea {
+    resize: none;
+    height: 130px;
+}
+
+.contact-form__error {
+    line-height: 1.5;
+    min-height: 1.5em;
+    color: var(--color-red);
+    text-align: left;
+}
+
+.contact-form__button-submit {
+    color: var(--color-white);
+    background-color: var(--color-main);
+    font-size: 20px;
+    margin: 50px 0;
+    padding: 5px 32px;
+}
+

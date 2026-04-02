@@ -5,7 +5,7 @@
 @section('content')
     <div class="contact-form__content">
         <div class="contact-form__heading">
-            <h2 class="heading-ttl contact-form__heading-ttl">Contact</h2>
+            <h1 class="contact-form__heading-title">Contact</h1>
         </div>
         <form action="{{ route('confirm') }}" method="POST" class="contact-form">
             @csrf
@@ -15,12 +15,13 @@
                     <span class="contact-form__label--span">※</span>
                 </div>
                 <div class="contact-form__group-content">
-                    <input type="text" id="first_name" name="first_name"
-                        value="{{ old('first_name', session('first_name')) }}" class="contact-form__input--text"
-                        placeholder="例: 山田">
-                    <input type="text" id="last_name" name="last_name"
-                        value="{{ old('last_name', session('last_name')) }}" class="contact-form__input--text"
-                        placeholder="例: 太郎">
+                    <div class="contact-form__name">
+                        <input type="text" id="name" name="first_name"
+                            value="{{ old('first_name', session('first_name')) }}" class="contact-form__input--text"
+                            placeholder="例: 山田">
+                        <input type="text" name="last_name" value="{{ old('last_name', session('last_name')) }}"
+                            class="contact-form__input--text" placeholder="例: 太郎">
+                    </div>
                     <div class="contact-form__error">
                         @error('last_name')
                             {{ $message }}
@@ -37,17 +38,26 @@
                     <span class="contact-form__label--span">※</span>
                 </div>
                 <div class="contact-form__group-content">
-                    <input type="radio" id="male" name="gender" value="1"
-                        {{ old('gender', session('gender')) === '1' ? 'checked' : '' }} class="contact-form__input--radio">
-                    <label for="male" class="contact-form__label--radio">男性</label>
-
-                    <input type="radio" id="female" name="gender" value="2"
-                        {{ old('gender', session('gender')) === '2' ? 'checked' : '' }} class="contact-form__input--radio">
-                    <label for="female" class="contact-form__label--radio">女性</label>
-
-                    <input type="radio" id="other" name="gender" value="3"
-                        {{ old('gender', session('gender')) === '3' ? 'checked' : '' }} class="contact-form__input--radio">
-                    <label for="other" class="contact-form__label--radio">その他</label>
+                    <div class="contact-form__gender">
+                        <div class="contact-form__gender-item">
+                            <input type="radio" id="male" name="gender" value="1"
+                                {{ old('gender', session('gender')) === '1' ? 'checked' : '' }}
+                                class="contact-form__input--radio">
+                            <label for="male" class="contact-form__label--radio">男性</label>
+                        </div>
+                        <div class="contact-form__gender-item">
+                            <input type="radio" id="female" name="gender" value="2"
+                                {{ old('gender', session('gender')) === '2' ? 'checked' : '' }}
+                                class="contact-form__input--radio">
+                            <label for="female" class="contact-form__label--radio">女性</label>
+                        </div>
+                        <div class="contact-form__gender-item">
+                            <input type="radio" id="other" name="gender" value="3"
+                                {{ old('gender', session('gender')) === '3' ? 'checked' : '' }}
+                                class="contact-form__input--radio">
+                            <label for="other" class="contact-form__label--radio">その他</label>
+                        </div>
+                    </div>
                     <div class="contact-form__error">
                         @error('gender')
                             {{ $message }}
@@ -76,13 +86,16 @@
                     <span class="contact-form__label--span">※</span>
                 </div>
                 <div class="contact-form__group-content">
-                    {{-- mergeで繋げて表示？ーは擬似要素か？ --}}
-                    <input type="tel" id="tel1" name="tel1" value="{{ old('tel1', session('tel1')) }}"
-                        class="contact-form__input--text" placeholder="080">
-                    <input type="tel" id="tel2" name="tel2" value="{{ old('tel2', session('tel2')) }}"
-                        class="contact-form__input--text" placeholder="1234">
-                    <input type="tel" id="tel3" name="tel3" value="{{ old('tel3', session('tel3')) }}"
-                        class="contact-form__input--text" placeholder="5678">
+                    <div class="contact-form__tel">
+                        <input type="tel" id="tel1" name="tel1" value="{{ old('tel1', session('tel1')) }}"
+                            class="contact-form__input--text" placeholder="080">
+                        <span class="contact-form__tel-hyphen">-</span>
+                        <input type="tel" id="tel2" name="tel2" value="{{ old('tel2', session('tel2')) }}"
+                            class="contact-form__input--text" placeholder="1234">
+                        <span class="contact-form__tel-hyphen">-</span>
+                        <input type="tel" id="tel3" name="tel3" value="{{ old('tel3', session('tel3')) }}"
+                            class="contact-form__input--text" placeholder="5678">
+                    </div>
                     <div class="contact-form__error">
                         @if ($errors->has('tel1') || $errors->has('tel2') || $errors->has('tel3'))
                             {{ $errors->first('tel1') ?: $errors->first('tel2') ?: $errors->first('tel3') }}
@@ -96,8 +109,9 @@
                     <span class="contact-form__label--span">※</span>
                 </div>
                 <div class="contact-form__group-content">
-                    <input type="text" id="address" name="address" value="{{ old('address', session('address')) }}"
-                        class="contact-form__input--text" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3">
+                    <input type="text" id="address" name="address"
+                        value="{{ old('address', session('address')) }}" class="contact-form__input--text"
+                        placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3">
                     <div class="contact-form__error">
                         @error('address')
                             {{ $message }}
@@ -126,7 +140,8 @@
                     <span class="contact-form__label--span">※</span>
                 </div>
                 <div class="contact-form__group-content">
-                    <select name="category_id" class="contact-form__select" id="category">
+                    <div class="contact-form__select-wrapper">
+                    <select name="category_id" class="contact-form__select contact-form__input--text" id="category">
                         <option value="">選択してください</option>
                         @foreach ($categories as $index => $category)
                             <option
@@ -134,6 +149,7 @@
                                 {{ $index + 1 }}. {{ $category->content }}</option>
                         @endforeach
                     </select>
+                    </div>
                     <div class="contact-form__error">
                         @error('category_id')
                             {{ $message }}
@@ -147,7 +163,8 @@
                     <span class="contact-form__label--span">※</span>
                 </div>
                 <div class="contact-form__group-content">
-                    <textarea name="detail" id="detail" class="contact-form__textarea" placeholder="お問い合わせ内容をご記載ください">{{ old('detail', session('detail')) }}</textarea>
+                    <textarea name="detail" id="detail" class="contact-form__textarea contact-form__input--text"
+                        placeholder="お問い合わせ内容をご記載ください">{{ old('detail', session('detail')) }}</textarea>
                     <div class="contact-form__error">
                         @error('detail')
                             {{ $message }}

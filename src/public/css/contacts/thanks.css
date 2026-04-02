@@ -1,0 +1,32 @@
+.thanks__content {
+    position: relative;
+    text-align: center;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.thanks__content::after {
+    content: 'Thankyou';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 280px;
+    color: #8B79690D;
+    z-index: -1;
+    white-space: nowrap;
+}
+
+.thanks__heading-title {
+    font-size: 30px;
+}
+
+.thanks-form__button {
+    color: var(--color-white);
+    background-color: var(--color-main);
+    font-size: 20px;
+    padding: 5px 32px;
+}
