@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use App\Http\Requests\RegisterRequest;
 
-
 class CreateNewUser implements CreatesNewUsers
 {
-
     /**
      * Validate and create a newly registered user.
      *

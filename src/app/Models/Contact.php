@@ -30,9 +30,9 @@ class Contact extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function getFUllNameAttribute(): string
+    public function getFullNameAttribute(): string
     {
-        return "{$this->last_name} {$this->first_name}";
+        return $this->last_name . '　' . $this->first_name;
     }
 
     public function getGenderLabelAttribute(): string
@@ -76,7 +76,7 @@ class Contact extends Model
 
     public function scopeDateSearch($query, $date)
     {
-        if(!empty($date)) {
+        if (!empty($date)) {
             $query->whereDate('created_at', $date);
         }
         return $query;

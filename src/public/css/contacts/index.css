@@ -1,15 +1,19 @@
 .contact-form__content {
     text-align: center;
-    padding: 50px 0;
+    min-height: calc(100vh - 70px);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .contact-form__heading-title {
-    font-size: 35px;
-    margin-bottom: 50px;
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
 .contact-form {
-    max-width: 972px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -17,23 +21,22 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 16px;
+    margin-bottom: 6px;
 }
 
 .contact-form__group-title {
     width: 35%;
     text-align: left;
-    padding-top: 16px;
-    /* inputのpaddingと合わせる */
+    padding-top: 4px;
 }
 
-.contact-form__label--item {
-    font-size: 20px;
+.contact-form__label {
+    font-size: 18px;
     color: var(--color-main);
 }
 
-.contact-form__label--span {
-    font-size: 20px;
+.contact-form__required-mark {
+    font-size: 18px;
     color: var(--color-red);
 }
 
@@ -47,7 +50,7 @@
     color: var(--color-main);
     background-color: var(--color-bg-light);
     border: none;
-    padding: 16px;
+    padding: 8px 16px;
 }
 
 .contact-form__input--text::placeholder {
@@ -57,10 +60,15 @@
 .contact-form__name {
     display: flex;
     gap: 16px;
+    width: 100%;
+}
+
+.contact-form__name-item {
+    width: 50%;
 }
 
 .contact-form__name .contact-form__input--text {
-    width: 50%;
+    width: 100%;
 }
 
 .contact-form__tel {
@@ -97,12 +105,9 @@
     width: 50%;
 }
 
-
 .contact-form__select {
     color: var(--color-sub-text);
     appearance: none;
-    /* -webkit-appearance: none;
-    padding-right: 40px */
     width: 100%;
 }
 
@@ -120,18 +125,15 @@
     transform: translateY(-50%);
 }
 
-.contact-form__select.valid {
-    color: var(--color-main);
-}
-
 .contact-form__textarea {
     resize: none;
-    height: 130px;
+    height: 110px;
 }
 
 .contact-form__error {
     line-height: 1.5;
     min-height: 1.5em;
+    font-size: 14px;
     color: var(--color-red);
     text-align: left;
 }
@@ -139,8 +141,7 @@
 .contact-form__button-submit {
     color: var(--color-white);
     background-color: var(--color-main);
-    font-size: 20px;
-    margin: 50px 0;
+    font-size: 18px;
+    margin: 8px 0;
     padding: 5px 32px;
 }
-

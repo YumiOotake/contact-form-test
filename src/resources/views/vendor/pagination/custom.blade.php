@@ -1,7 +1,7 @@
-@if ($paginator->hasPages())
-    <nav class="paginate-nav">
-        <ul class="paginate-inner">
 
+<nav class="paginate-nav">
+    <ul class="paginate-inner">
+        @if ($paginator->hasPages())
             {{-- 前へ --}}
             @if ($paginator->onFirstPage())
                 <li><span class="paginate-btn paginate-btn--disabled"><</span></li>
@@ -32,7 +32,7 @@
             @else
                 <li><span class="paginate-btn paginate-btn--disabled">></span></li>
             @endif
+        @endif
+    </ul>
+</nav>
 
-        </ul>
-    </nav>
-@endif

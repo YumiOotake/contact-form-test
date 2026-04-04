@@ -1,11 +1,13 @@
 .admin__content {
-    max-width: 1183px;
-    margin: 40px auto;
+    max-width: 1100px;
+    margin: 2% auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .admin__heading-title {
-    font-size: 35px;
-    margin-bottom: 30px;
+    font-size: 28px;
+    margin-bottom: 16px;
     text-align: center;
 }
 
@@ -32,7 +34,7 @@
 }
 
 .search-form__item {
-    height: 50px;
+    height: 40px;
 }
 
 .search-form__item-input {
@@ -41,16 +43,18 @@
     color: var(--color-main);
     background-color: var(--color-bg-light);
     border: 1px solid var(--color-border);
-    padding: 10px;
+    padding: 8px;
 }
 
 .search-form__item-input::placeholder {
     color: var(--color-sub-text);
 }
+
 .search-form__select-wrapper {
     height: 100%;
     position: relative;
 }
+
 .search-form__select-wrapper::after {
     content: '';
     position: absolute;
@@ -63,18 +67,19 @@
     border-right: 8px solid transparent;
     border-top: 8px solid var(--color-border);
     transform: translateY(-50%);
+    pointer-events: none;
 }
 
 .search-form__select {
     appearance: none;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
+.search-form input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
 }
 
 .search-form__button {
-    height: 50px;
+    height: 40px;
     flex: none;
     display: flex;
     gap: 8px;
@@ -83,8 +88,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .search-form__button--submit {
     color: var(--color-white);
     background-color: var(--color-main);
-    font-size: 18px;
-    width: 100px;
+    font-size: 14px;
+    width: 70px;
 }
 
 .search-form__button--reset {
@@ -93,26 +98,30 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: center;
     color: var(--color-white);
     background-color: var(--color-sub);
-    font-size: 18px;
-    width: 100px;
+    font-size: 14px;
+    width: 70px;
 }
 
 .admin-content__nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 16px 0;
+    min-height: 46px;
 }
 
 .admin-content__export--button {
     color: var(--color-main);
     background-color: var(--color-bg-light);
     padding: 8px 16px;
+
 }
 
 .admin-content__paginate {
-    margin: 16px 0;
+    min-height: 30px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .paginate-nav {
@@ -131,23 +140,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     min-width: 30px;
     height: 30px;
     padding: 0 10px;
-    border: 1px solid #d0d0d0;
-    color: #8B7969;
+    border: 1px solid var(--color-border);
+    color: var(--color-main);
     text-decoration: none;
     font-size: 14px;
-    background: #FFFFFF;
+    background: var(--color-white);
     transition: background 0.15s, border-color 0.15s;
 }
 
 .paginate-btn:hover {
-    background: #D9C6B5;
-    border-color: #E3DED9;
+    background: var(--color-sub);
+    border-color: var(--color-white);
 }
 
 .paginate-btn--active {
-    background: #8B7969;
-    color: #FFFFFF;
-    border-color: #E3DED9;
+    background: var(--color-main);
+    color: var(--color-white);
+    border-color: var(--color-white);
     cursor: default;
 }
 
@@ -156,14 +165,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-color: #e8e8e8;
     background: #fafafa;
     cursor: default;
-}
-
-.paginate-btn--dots {
-    border: none;
-    background: none;
-    color: #aaa;
-    cursor: default;
-    min-width: 24px;
 }
 
 .contact-table {
@@ -177,31 +178,31 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .contact-table__header:nth-child(1) {
-    width: 17%;
+    width: 15%;
 }
 
 .contact-table__header:nth-child(2) {
-    width: 17%;
+    width: 15%;
 }
 
 .contact-table__header:nth-child(3) {
-    width: 30%;
+    width: 28%;
 }
 
 .contact-table__header:nth-child(4) {
-    width: 25%;
+    width: 27%;
 }
 
 .contact-table__header:nth-child(5) {
-    width: 21%;
+    width: 15%;
 }
 
 .contact-table__header {
-    font-size: 18px;
+    font-size: 16px;
     text-align: left;
     color: var(--color-white);
     background-color: var(--color-main);
-    padding: 18px 32px;
+    padding: 15px 32px;
 }
 
 .contact-table__tbody .contact-table__row:hover {
@@ -211,7 +212,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .contact-table__item {
     font-size: 16px;
-    padding: 24px 32px;
+    padding: 15px 32px;
 }
 
 .contact-table__item:last-child {
@@ -221,17 +222,42 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .contact-table__detail-button {
     color: var(--color-sub);
     border: 1px solid var(--color-border);
-    padding: 8px 20px;
+    padding: 5px 20px;
     cursor: pointer;
 }
 
+.contact-table__empty {
+    text-align: center;
+    font-size: 16px;
+    padding: 12px 32px;
+}
 
 .modal {
-    width: 800px;
-    border: none;
-    border-radius: 4px;
-    padding: 0;
-    color: var(--color-main);
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 1000;
+}
+
+.modal:target {
+    display: block;
+}
+
+.modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.modal__content {
+    position: relative;
+    width: 650px;
+    max-width: 90%;
+    margin: 40px auto;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    padding: 80px 70px;
+    z-index: 1001;
 }
 
 .modal__close {
@@ -240,20 +266,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: 20px;
     width: 36px;
     height: 36px;
+    border: 1px solid var(--color-main);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    border: 1px solid var(--color-main);
-    background-color: var(--color-white);
-    box-shadow: 0 0 #000;
-    font-size: 20px;
-    cursor: pointer;
-    color: var(--color-main);
-}
-
-.modal__inner {
-    padding: 100px 70px;
+    background: #fff;
 }
 
 .modal__table {
@@ -262,7 +280,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .modal__table-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     padding: 10px 20px;
     width: 35%;
@@ -271,17 +289,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .modal__table-data {
-    font-size: 20px;
+    font-size: 18px;
     padding: 10px 0;
 }
 
 .modal__button {
     text-align: center;
+
 }
 
 .modal__button--delete {
     color: var(--color-white);
     background-color: var(--color-red);
     font-size: 18px;
-    padding: 8px 32px;
+    padding: 8px 30px;
 }

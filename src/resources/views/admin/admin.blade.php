@@ -5,7 +5,7 @@
 @section('content')
     <div class="admin__content">
         <div class="admin__heading">
-            <h1 class="heading-title admin__heading-title">Admin</h1>
+            <h1 class="admin__heading-title">Admin</h1>
         </div>
         <form class="search-form" action="{{ route('search') }}" method="get">
             <div class="search-form__item">
@@ -39,7 +39,7 @@
             <div class="search-form__item">
                 <div class="search-form__select-wrapper">
                     <input type="date" id="date" name="date"
-                        class="search-form__item-input search-form__item--select" placeholder="年/月/日"
+                        class="search-form__item-input search-form__item--date" placeholder="年/月/日"
                         value="{{ request('date') }}">
                 </div>
             </div>
@@ -58,9 +58,6 @@
                 {{ $contacts->appends(request()->query())->links('vendor.pagination.custom') }}
             </div>
         </div>
-
-
-        {{-- <div class="contact-table"> --}}
         <table class="contact-table">
             <thead class="contact-table__thead">
                 <tr class="contact-table__row">
@@ -80,7 +77,7 @@
                         <td class="contact-table__item">{{ $contact->category->content }}</td>
                         <td class="contact-table__item">
                             <div class="contact-table__detail">
-                                <a class="js-modal-open contact-table__detail-button" data-id="{{ $contact->id }}">詳細</a>
+                                <a href="#modal-{{ $contact->id }}" class="contact-table__detail-button">詳細</a>
                             </div>
                         </td>
                     </tr>
@@ -93,73 +90,55 @@
                 @endforelse
             </tbody>
         </table>
-    </div>
-    @forelse ($contacts as $contact)
-        <dialog id="modal-{{ $contact->id }}" class="modal">
-            <button class="js-modal-close modal__close">×</button>
-            <div class="modal__inner">
-                <table class="modal__table">
-                    <tr class="modal__table-row">
-                        <th class="modal__table-title">お名前</th>
-                        <td class="modal__table-data">{{ $contact->full_name }}</td>
-                    </tr>
-                    <tr class="modal__table-row">
-                        <th class="modal__table-title">性別</th>
-                        <td class="modal__table-data">{{ $contact->gender_label }}</td>
-                    </tr>
-                    <tr class="modal__table-row">
-                        <th class="modal__table-title">メールアドレス</th>
-                        <td class="modal__table-data">{{ $contact->email }}</td>
-                    </tr>
-                    <tr class="modal__table-row">
-                        <th class="modal__table-title">電話番号</th>
-                        <td class="modal__table-data">{{ $contact->tel }}</td>
-                    </tr>
-                    <tr class="modal__table-row">
-                        <th class="modal__table-title">住所</th>
-                        <td class="modal__table-data">{{ $contact->address }}</td>
-                    </tr>
-                    <tr class="modal__table-row">
-                        <th class="modal__table-title">建物名</th>
-                        <td class="modal__table-data">{{ $contact->building }}</td>
-                    </tr>
-                    <tr class="modal__table-row">
-                        <th class="modal__table-title">お問い合わせの種類</th>
-                        <td class="modal__table-data">{{ $contact->category->content }}</td>
-                    </tr>
-                    <tr class="modal__table-row">
-                        <th class="modal__table-title">お問い合わせ内容</th>
-                        <td class="modal__table-data">{{ $contact->detail }}</td>
-                    </tr>
-                </table>
-                <form action="{{ route('delete', $contact) }}" method="POST" class="modal__button">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="modal__button--delete">
-                        削除
-                    </button>
-                </form>
+        @forelse ($contacts as $contact)
+            <div id="modal-{{ $contact->id }}" class="modal">
+                <a href="#" class="modal__overlay"></a>
+
+                <div class="modal__content">
+                    <a href="#" class="modal__close">×</a>
+
+                    <table class="modal__table">
+                        <tr class="modal__table-row">
+                            <th class="modal__table-title">お名前</th>
+                            <td class="modal__table-data">{{ $contact->full_name }}</td>
+                        </tr>
+                        <tr class="modal__table-row">
+                            <th class="modal__table-title">性別</th>
+                            <td class="modal__table-data">{{ $contact->gender_label }}</td>
+                        </tr>
+                        <tr class="modal__table-row">
+                            <th class="modal__table-title">メールアドレス</th>
+                            <td class="modal__table-data">{{ $contact->email }}</td>
+                        </tr>
+                        <tr class="modal__table-row">
+                            <th class="modal__table-title">電話番号</th>
+                            <td class="modal__table-data">{{ $contact->tel }}</td>
+                        </tr>
+                        <tr class="modal__table-row">
+                            <th class="modal__table-title">住所</th>
+                            <td class="modal__table-data">{{ $contact->address }}</td>
+                        </tr>
+                        <tr class="modal__table-row">
+                            <th class="modal__table-title">建物名</th>
+                            <td class="modal__table-data">{{ $contact->building }}</td>
+                        </tr>
+                        <tr class="modal__table-row">
+                            <th class="modal__table-title">お問い合わせの種類</th>
+                            <td class="modal__table-data">{{ $contact->category->content }}</td>
+                        </tr>
+                        <tr class="modal__table-row">
+                            <th class="modal__table-title">お問い合わせ内容</th>
+                            <td class="modal__table-data">{{ $contact->detail }}</td>
+                        </tr>
+                    </table>
+                    <form action="{{ route('delete', $contact) }}" method="POST" class="modal__button">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="modal__button--delete">削除</button>
+                    </form>
+                </div>
             </div>
-        </dialog>
-    @empty
-    @endforelse
-
-    {{-- </div> --}}
-    @push('scripts')
-        <script>
-            document.querySelectorAll('.js-modal-open').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const id = btn.dataset.id;
-                    const modal = document.querySelector(`#modal-${id}`);
-                    modal.showModal();
-                });
-            });
-
-            document.querySelectorAll('.js-modal-close').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    btn.closest('dialog').close();
-                });
-            });
-        </script>
-    @endpush
+        @empty
+        @endforelse
+    </div>
 @endsection

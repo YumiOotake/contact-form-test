@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Contact;
-use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
@@ -18,7 +17,7 @@ class ContactController extends Controller
 
     private function buildTel(array $data): string
     {
-        return $data['tel1'] . '-' . $data['tel2'] . '-' . $data['tel3'];
+        return $data['tel1'] . $data['tel2'] . $data['tel3'];
     }
 
     public function confirm(ContactRequest $request)
@@ -49,7 +48,7 @@ class ContactController extends Controller
         return view('contacts.thanks');
     }
 
-    public function store(Request $request)
+    public function store()
     {
         $tel = $this->buildTel([
             'tel1' => session('tel1'),

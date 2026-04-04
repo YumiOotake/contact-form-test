@@ -7,8 +7,6 @@
         <div class="thanks__heading">
             <h1 class="thanks__heading-title">お問い合わせありがとうございました</h1>
         </div>
-        <form action="{{ route('index') }}" class="thanks-form" method="GET">
-            <button class="thanks-form__button">HOME</button>
-        </form>
+        <a href="{{ route('index') }}" class="thanks-form__button">HOME</a>
     </div>
 @endsection

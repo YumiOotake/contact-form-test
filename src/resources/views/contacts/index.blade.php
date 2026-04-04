@@ -7,35 +7,41 @@
         <div class="contact-form__heading">
             <h1 class="contact-form__heading-title">Contact</h1>
         </div>
-        <form action="{{ route('confirm') }}" method="POST" class="contact-form">
+        <form action="{{ route('confirm') }}" method="POST" class="contact-form" novalidate>
             @csrf
             <div class="contact-form__group">
                 <div class="contact-form__group-title">
-                    <label for="name" class="contact-form__label--item">お名前</label>
-                    <span class="contact-form__label--span">※</span>
+                    <label for="name" class="contact-form__label">お名前</label>
+                    <span class="contact-form__required-mark">※</span>
                 </div>
                 <div class="contact-form__group-content">
                     <div class="contact-form__name">
-                        <input type="text" id="name" name="first_name"
-                            value="{{ old('first_name', session('first_name')) }}" class="contact-form__input--text"
-                            placeholder="例: 山田">
-                        <input type="text" name="last_name" value="{{ old('last_name', session('last_name')) }}"
-                            class="contact-form__input--text" placeholder="例: 太郎">
-                    </div>
-                    <div class="contact-form__error">
-                        @error('last_name')
-                            {{ $message }}
-                        @enderror
-                        @error('first_name')
-                            {{ $message }}
-                        @enderror
+                        <div class="contact-form__name-item">
+                            <input type="text" name="last_name" id="name"
+                                value="{{ old('last_name', session('last_name')) }}" class="contact-form__input--text"
+                                placeholder="例: 山田">
+                            <div class="contact-form__error">
+                                @error('last_name')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="contact-form__name-item">
+                            <input type="text" name="first_name" value="{{ old('first_name', session('first_name')) }}"
+                                class="contact-form__input--text" placeholder="例: 太郎">
+                            <div class="contact-form__error">
+                                @error('first_name')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="contact-form__group">
                 <div class="contact-form__group-title">
-                    <label for="male" class="contact-form__label--item">性別</label>
-                    <span class="contact-form__label--span">※</span>
+                    <label for="male" class="contact-form__label">性別</label>
+                    <span class="contact-form__required-mark">※</span>
                 </div>
                 <div class="contact-form__group-content">
                     <div class="contact-form__gender">
@@ -67,8 +73,8 @@
             </div>
             <div class="contact-form__group">
                 <div class="contact-form__group-title">
-                    <label for="email" class="contact-form__label--item">メールアドレス</label>
-                    <span class="contact-form__label--span">※</span>
+                    <label for="email" class="contact-form__label">メールアドレス</label>
+                    <span class="contact-form__required-mark">※</span>
                 </div>
                 <div class="contact-form__group-content">
                     <input type="email" id="email" name="email" value="{{ old('email', session('email')) }}"
@@ -82,8 +88,8 @@
             </div>
             <div class="contact-form__group">
                 <div class="contact-form__group-title">
-                    <label for="tel1" class="contact-form__label--item">電話番号</label>
-                    <span class="contact-form__label--span">※</span>
+                    <label for="tel1" class="contact-form__label">電話番号</label>
+                    <span class="contact-form__required-mark">※</span>
                 </div>
                 <div class="contact-form__group-content">
                     <div class="contact-form__tel">
@@ -105,8 +111,8 @@
             </div>
             <div class="contact-form__group">
                 <div class="contact-form__group-title">
-                    <label for="address" class="contact-form__label--item">住所</label>
-                    <span class="contact-form__label--span">※</span>
+                    <label for="address" class="contact-form__label">住所</label>
+                    <span class="contact-form__required-mark">※</span>
                 </div>
                 <div class="contact-form__group-content">
                     <input type="text" id="address" name="address"
@@ -121,7 +127,7 @@
             </div>
             <div class="contact-form__group">
                 <div class="contact-form__group-title">
-                    <label for="building" class="contact-form__label--item">建物名</label>
+                    <label for="building" class="contact-form__label">建物名</label>
                 </div>
                 <div class="contact-form__group-content">
                     <input type="text" id="building" name="building"
@@ -136,19 +142,21 @@
             </div>
             <div class="contact-form__group">
                 <div class="contact-form__group-title">
-                    <label for="category" class="contact-form__label--item">お問い合わせの種類</label>
-                    <span class="contact-form__label--span">※</span>
+                    <label for="category" class="contact-form__label">お問い合わせの種類</label>
+                    <span class="contact-form__required-mark">※</span>
                 </div>
                 <div class="contact-form__group-content">
                     <div class="contact-form__select-wrapper">
-                    <select name="category_id" class="contact-form__select contact-form__input--text" id="category">
-                        <option value="">選択してください</option>
-                        @foreach ($categories as $index => $category)
-                            <option
-                                value="{{ $category->id }}"{{ old('category_id', session('category_id')) == $category->id ? 'selected' : '' }}>
-                                {{ $index + 1 }}. {{ $category->content }}</option>
-                        @endforeach
-                    </select>
+                        <select name="category_id" id="category" class="contact-form__select contact-form__input--text">
+                            <option value="" {{ old('category_id', session('category_id')) ? '' : 'selected' }}
+                                hidden>選択してください</option>
+                            @foreach ($categories as $index => $category)
+                                <option value="{{ $category->id }}"
+                                    {{ old('category_id', session('category_id')) == $category->id ? 'selected' : '' }}>
+                                    {{ $index + 1 }}. {{ $category->content }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="contact-form__error">
                         @error('category_id')
@@ -159,8 +167,8 @@
             </div>
             <div class="contact-form__group">
                 <div class="contact-form__group-title">
-                    <label for="detail" class="contact-form__label--item">お問い合わせ内容</label>
-                    <span class="contact-form__label--span">※</span>
+                    <label for="detail" class="contact-form__label">お問い合わせ内容</label>
+                    <span class="contact-form__required-mark">※</span>
                 </div>
                 <div class="contact-form__group-content">
                     <textarea name="detail" id="detail" class="contact-form__textarea contact-form__input--text"
