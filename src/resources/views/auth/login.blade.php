@@ -5,7 +5,6 @@
 @section('content')
     <div class="auth-form__content">
         <div class="auth-form__content-wrapper">
-
             <div class="auth-form__heading">
                 <h1 class="auth-form__heading-title">Login</h1>
             </div>

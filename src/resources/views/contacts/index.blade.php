@@ -148,8 +148,8 @@
                 <div class="contact-form__group-content">
                     <div class="contact-form__select-wrapper">
                         <select name="category_id" id="category" class="contact-form__select contact-form__input--text">
-                            <option value="" {{ old('category_id', session('category_id')) ? '' : 'selected' }}
-                                hidden>選択してください</option>
+                            <option value="" {{ old('category_id', session('category_id')) ? '' : 'selected' }}>
+                                選択してください</option>
                             @foreach ($categories as $index => $category)
                                 <option value="{{ $category->id }}"
                                     {{ old('category_id', session('category_id')) == $category->id ? 'selected' : '' }}>
