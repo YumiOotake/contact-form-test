@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="confirm-form__content">
-        <div class="confirm-form__contentーwrapper">
+        <div class="confirm-form__content-wrapper">
             <div class="confirm-form__heading">
                 <h1 class="confirm-form__heading-title">Confirm</h1>
             </div>

@@ -47,11 +47,14 @@ class Contact extends Model
     public function scopeKeywordSearch($query, $keyword)
     {
         if (!empty($keyword)) {
-            $query->where(function ($q) use ($keyword) {
+            $normalizedKeyword = str_replace('　', ' ', $keyword);
+
+            $query->where(function ($q) use ($keyword, $normalizedKeyword) {
                 $q->where('last_name', 'like', "%{$keyword}%")
                     ->orWhere('first_name', 'like', "%{$keyword}%")
-                    ->orWhereRaw("CONCAT(last_name, first_name) like ?", ["%{$keyword}%"])
-                    ->orWhereRaw("CONCAT(last_name, ' ', first_name) like ?", ["%{$keyword}%"])
+                    ->orWhereRaw("CONCAT(last_name, first_name) like ?", ["%{$normalizedKeyword}%"])
+                    ->orWhereRaw("CONCAT(last_name, ' ', first_name) like ?", ["%{$normalizedKeyword}%"])
+                    ->orWhereRaw("CONCAT(last_name, '　', first_name) like ?", ["%{$normalizedKeyword}%"])
                     ->orWhere('email', 'like', "%{$keyword}%");
             });
         }

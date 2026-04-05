@@ -1,8 +1,25 @@
 .admin__content {
     max-width: 1100px;
-    margin: 2% auto;
+    margin: 0 auto;
+    min-height: calc(100vh - 70px);
+    padding: 30px 0;
+}
+
+.admin__content-wrapper {
+    min-height: calc(100vh - 70px - 60px);
     display: flex;
     flex-direction: column;
+}
+
+.admin__top {
+    flex-shrink: 0;
+}
+
+.admin__result {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .admin__heading-title {
@@ -106,8 +123,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 16px 0;
-    min-height: 46px;
+    height: 72px;
 }
 
 .admin-content__export--button {

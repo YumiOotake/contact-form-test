@@ -21,9 +21,9 @@
                                 class="auth-form__input" placeholder="例: test@example.com">
                         </div>
                         <div class="auth-form__error">
-                            @error('email')
-                                {{ $message }}
-                            @enderror
+                            @if ($errors->has('email') && !str_contains($errors->first('email'), 'ログイン情報'))
+                                {{ $errors->first('email') }}
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -40,6 +40,9 @@
                             @error('password')
                                 {{ $message }}
                             @enderror
+                            @if ($errors->has('email') && str_contains($errors->first('email'), 'ログイン情報'))
+                                {{ $errors->first('email') }}
+                            @endif
                         </div>
                     </div>
                 </div>

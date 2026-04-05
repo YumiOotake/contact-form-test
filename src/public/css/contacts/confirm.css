@@ -20,7 +20,8 @@
 
 .confirm-form__table {
     width: 100%;
-    border-right: 1px solid var(--color-border);border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
 }
 
 .confirm-form__table-row {
